@@ -10,7 +10,8 @@ const fetch = require("node-fetch");
 // Configuration
 const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
 const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
+const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER; // For receiving calls
+const SMS_FROM_NUMBER = process.env.SMS_FROM_NUMBER || "+1-419-515-5790"; // Google Voice number for sending SMS
 
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
@@ -92,11 +93,11 @@ async function sendSmsViaTwilio(toPhone, callSid) {
   try {
     const sms = await client.messages.create({
       body: PLUMBER_SMS,
-      from: TWILIO_PHONE_NUMBER,
+      from: SMS_FROM_NUMBER, // Send from Google Voice number
       to: toPhone,
     });
 
-    console.log(`[${callSid}] SMS sent. Message SID: ${sms.sid}`);
+    console.log(`[${callSid}] SMS sent from ${SMS_FROM_NUMBER}. Message SID: ${sms.sid}`);
     return sms.sid;
   } catch (error) {
     console.error(`[${callSid}] Twilio error:`, error.message);
