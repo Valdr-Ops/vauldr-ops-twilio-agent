@@ -1,12 +1,11 @@
 {
-  "name": "vauldr-ops-twilio-agent",
-  "version": "1.0.0",
-  "description": "Lead Shield automation agent for plumbers",
-  "main": "api/twilio-webhook.js",
-  "dependencies": {
-    "twilio": "^4.10.0"
-  },
-  "engines": {
-    "node": "18.x"
-  }
+    "name": "vauldr-ops-twilio-agent",
+    "version": "1.0.0",
+    "description": "Lead Shield automation agent for plumbers",
+    "dependencies": {
+          "twilio": "^4.10.0"
+    },
+    "engines": {
+          "node": "20.x"
+    }
 }
